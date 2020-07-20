@@ -22,43 +22,44 @@ function MapLab() { // função que cria o mapa
     const labirinto = document.getElementById("campo");
 
     for (linX = 0; linX < map.length; linX++) { //for que constrói as linhas
-        let linha = document.createElement("div");
-        linha.className = "linha";
+        let linha1 = document.createElement("div");
+        linha1.className = "linha";
 
         for (colY = 0; colY < map[linX].length; colY++) { //for que constrói as colunas
             let cellId = linX + "." + colY;
-            switch (map[linX][colY]) {
+            //let paredeId = "p." + linX + "." + colY;
 
+            switch (map[linX][colY]) {
                 case "W":
                     let parede = document.createElement("div");
                     parede.className = "parede";
                     parede.id = cellId;
-                    linha.appendChild(parede);
+                    linha1.appendChild(parede);
                     break;
 
                 case "F":
                     let fim = document.createElement("div");
                     fim.className = "fim";
-                    fim.id = cellId;
-                    linha.appendChild(fim);
+                    fim.id = "fim";
+                    linha1.appendChild(fim);
                     break;
 
                 case "S":
                     let inicio = document.createElement("div");
                     inicio.className = "inicio";
                     inicio.id = "start"
-                    linha.appendChild(inicio);
+                    linha1.appendChild(inicio);
                     break;
 
                 case " ":
                     let vazio = document.createElement("div");
                     vazio.className = "vazio";
                     vazio.id = cellId;
-                    linha.appendChild(vazio);
+                    linha1.appendChild(vazio);
                     break;
             }
         }
-        labirinto.appendChild(linha);
+        labirinto.appendChild(linha1);
     }
 }
 MapLab();
@@ -67,37 +68,39 @@ let divStart = document.getElementById("start");
 let jogador = document.getElementById("jogador");
 divStart.appendChild(jogador);
 
-
-let vertical = 9;
-let horizontal = 0;
-// coluna.linha = v.h
-
 function move() {
+
+    let linha = 9;
+    let coluna = 0;
 
     document.addEventListener('keydown', (event) => {
         const keyName = event.key;
         //console.log(keyName)
-        //let posicao;
-
         if (keyName === "ArrowRight") {
-            horizontal += 1;
-            console.log(vertical + "." + horizontal);
-            // posicao = (vertical + "." + horizontal);
-            // var direcao = getElementById("posicao");
-            // direcao.appendChild(posicao);
+            console.log(linha + "." + coluna);
+            coluna += 1;
+            let novaDiv = document.getElementById(linha + "." + coluna);
+            novaDiv.appendChild(jogador);
 
         } else if (
             keyName === "ArrowLeft") {
-            horizontal -= 1;
-            console.log(vertical + "." + horizontal);
+            console.log(linha + "." + coluna);
+            coluna -= 1;
+            let novaDiv = document.getElementById(linha + "." + coluna);
+            novaDiv.appendChild(jogador);
+
         } else if (
             keyName === "ArrowUp") {
-            vertical -= 1;
-            console.log(vertical + "." + horizontal);
+            console.log(linha + "." + coluna);
+            linha -= 1;
+            let novaDiv = document.getElementById(linha + "." + coluna);
+            novaDiv.appendChild(jogador);
         } else if (
             keyName === "ArrowDown") {
-            vertical += 1;
-            console.log(vertical + "." + horizontal);
+            console.log(linha + "." + coluna);
+            linha += 1;
+            let novaDiv = document.getElementById(linha + "." + coluna);
+            novaDiv.appendChild(jogador);
         }
     })
 }
