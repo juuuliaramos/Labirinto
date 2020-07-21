@@ -46,8 +46,9 @@
      height: 20px;
      width: 20px;
  }
- /* h1 {
-     text-align: center;
-     color: white;
-     margin-top: 5%;
- } */
+ 
+ #vitoria {
+     background-color: palevioletred;
+     height: 200px;
+     width: 200px;
+ }
